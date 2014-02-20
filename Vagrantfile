@@ -10,4 +10,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--memory", "256", '--cpus', 1]
   end
   config.vm.network :forwarded_port, guest: 80, host: 8000, id: 'http'
+
+  config.vm.provision 'ansible' do |ansible|
+    ansible.inventory_path = './hosts'
+    ansible.playbook = 'site.yml'
+  end
 end
