@@ -5,4 +5,8 @@
     - yum: name=* state=latest
       name: be sure updated to latest packages
     - yum: name=yum-plugin-fastestmirror state=installed
-      name:  be sure yum-plugin-fastestmirror installed
+      name: be sure yum-plugin-fastestmirror installed
+
+    - yum: name="@Development tools" state=installed
+      name: be sure Development tools installed
+
