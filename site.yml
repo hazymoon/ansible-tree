@@ -10,3 +10,7 @@
     - yum: name="@Development tools" state=installed
       name: be sure Development tools installed
 
+    - git: repo=git://github.com/sstephenson/rbenv.git dest=/usr/local/rbenv
+      name: git clone rbenv
+    - git: repo=git://github.com/sstephenson/ruby-build.git dest=/usr/local/rbenv/plugins/ruby-build
+      name: git clone ruby-build
