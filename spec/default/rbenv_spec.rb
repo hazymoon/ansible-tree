@@ -53,7 +53,29 @@ describe file('/etc/sudoers.d/rbenv') do
   it {should be_mode '644'}
   it {should be_owned_by 'root'}
 end
-
 describe command('rbenv') do
   it {should return_exit_status 0}
+end
+
+# rubyのコンパイルに必要なパッケージの確認
+describe package('libcurl-devel') do
+  it { should be_installed }
+end
+describe package('openssl-devel') do
+  it { should be_installed }
+end
+describe package('zlib-devel') do
+  it { should be_installed }
+end
+describe yumrepo('epel') do
+  it {should exist}
+  it {should be_enabled}
+end
+describe package('libcurl-devel') do
+  it { should be_installed }
+end
+
+# ruby 2.1.0がインストールされているか確認
+describe command('ruby --version') do
+  it {should return_stdout(/ruby 2\.1\.0/)}
 end

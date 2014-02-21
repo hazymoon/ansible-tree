@@ -24,3 +24,17 @@
 
     - copy: src=./common-roles/base/files/sudoers.d/rbenv dest=/etc/sudoers.d/rbenv owner=root group=root mode=0644
       name: add path to sudo users
+
+    - yum: name=libcurl-devel state=installed
+      name: install libcurl-devel for ruby
+    - yum: name=openssl-devel state=installed
+      name: install openssl-devel for ruby
+    - yum: name=zlib-devel state=installed
+      name: install zlib-devel for ruby
+    - yum: name=libyaml-devel state=installed enablerepo=epel
+      name: install libyaml-devel for ruby
+
+    - command: rbenv install 2.1.0
+      name: install ruby 2.1.0
+    - command: rbenv global 2.1.0
+      name: use ruby 2.1.0 system wide
