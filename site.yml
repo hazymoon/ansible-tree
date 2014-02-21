@@ -4,3 +4,4 @@
   roles:
     - role: ./common-roles/base
     - role: ./common-roles/ruby
+    - role: ./common-roles/nginx
