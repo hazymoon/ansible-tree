@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 require 'spec_helper'
 
+# ruby-build
 rbenv_path = '/usr/local/rbenv'
 describe file("#{rbenv_path}/bin/rbenv") do
   it {should be_executable}
@@ -10,15 +11,17 @@ describe file(rbenv_path) do
   it {should be_directory}
 end
 
-ruby_build_path = '/usr/local/rbenv/plugins/ruby-build'
+# ruby-build
+ruby_build_path = "#{rbenv_path}/plugins/ruby-build"
+
+describe file(ruby_build_path) do
+  it {should be_directory}
+end
 
 describe file("#{ruby_build_path}/bin/ruby-build") do
   it {should be_executable}
 end
 
-describe file(ruby_build_path) do
-  it {should be_directory}
-end
 
 # rbenvのログイン時設定用ファイルの確認
 describe file('/etc/profile.d/rbenv.sh') do
