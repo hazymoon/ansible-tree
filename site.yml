@@ -13,14 +13,14 @@
     - git: repo=git://github.com/sstephenson/rbenv.git dest=/usr/local/rbenv
       name: checkout rbenv
 
-    - copy: src=./common-roles/base/files/profile.d/rbenv dest=/etc/profile.d/rbenv owner=root group=root mode=0644
-      name: set rbenv environment file
-
     - git: repo=git://github.com/sstephenson/ruby-build.git dest=/usr/local/rbenv/plugins/ruby-build
       name: git clone ruby-build
 
-    - file: src=./common-roles/base/files/profile.d/rbenv dest=/etc/profile.d/rbenv owner=root group=root
-      name: rbenv login setting
+    - copy: src=./common-roles/base/files/profile.d/rbenv.sh dest=/etc/profile.d/rbenv.sh owner=root group=root mode=0644
+      name: set rbenv environment file
 
-    - command: bash /etc/profile.d/rbenv
+    - command: bash /etc/profile.d/rbenv.sh
       name: run rbenv init
+
+    - copy: src=./common-roles/base/files/sudoers.d/rbenv dest=/etc/sudoers.d/rbenv owner=root group=root mode=0644
+      name: add path to sudo users

@@ -21,7 +21,7 @@ describe file(ruby_build_path) do
 end
 
 # rbenvのログイン時設定用ファイルの確認
-describe file('/etc/profile.d/rbenv') do
+describe file('/etc/profile.d/rbenv.sh') do
   it {should be_file}
   it {should be_mode '644'}
   it {should be_owned_by 'root'}
@@ -45,4 +45,15 @@ describe file('/usr/local/rbenv/shims') do
 end
 describe file('/usr/local/rbenv/versions') do
   it {should be_directory}
+end
+
+# sudoからrbenvが実行できるようになっているか
+describe file('/etc/sudoers.d/rbenv') do
+  it {should be_file}
+  it {should be_mode '644'}
+  it {should be_owned_by 'root'}
+end
+
+describe command('rbenv') do
+  it {should return_exit_status 0}
 end
