@@ -1,0 +1,29 @@
+---
+  - git: repo=git://github.com/sstephenson/rbenv.git dest=/usr/local/rbenv
+    name: checkout rbenv
+
+  - git: repo=git://github.com/sstephenson/ruby-build.git dest=/usr/local/rbenv/plugins/ruby-build
+    name: git clone ruby-build
+
+  - copy: src=../files/profile.d/rbenv.sh dest=/etc/profile.d/rbenv.sh owner=root group=root mode=0644
+    name: set rbenv environment file
+
+  - command: bash /etc/profile.d/rbenv.sh
+    name: run rbenv init
+
+  - copy: src=../files/sudoers.d/rbenv dest=/etc/sudoers.d/rbenv owner=root group=root mode=0644
+    name: add path to sudo users
+
+  - yum: name=libcurl-devel state=installed
+    name: install libcurl-devel for ruby
+  - yum: name=openssl-devel state=installed
+    name: install openssl-devel for ruby
+  - yum: name=zlib-devel state=installed
+    name: install zlib-devel for ruby
+  - yum: name=libyaml-devel state=installed enablerepo=epel
+    name: install libyaml-devel for ruby
+
+  - shell: test -e /usr/local/rbenv/versions/2.1.0 || rbenv install 2.1.0
+    name: install ruby 2.1.0
+  - command: rbenv global 2.1.0
+    name: use ruby 2.1.0 system wide
