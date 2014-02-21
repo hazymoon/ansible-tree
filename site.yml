@@ -11,6 +11,16 @@
       name: be sure Development tools installed
 
     - git: repo=git://github.com/sstephenson/rbenv.git dest=/usr/local/rbenv
-      name: git clone rbenv
+      name: checkout rbenv
+
+    - copy: src=./common-roles/base/files/profile.d/rbenv dest=/etc/profile.d/rbenv owner=root group=root mode=0644
+      name: set rbenv environment file
+
     - git: repo=git://github.com/sstephenson/ruby-build.git dest=/usr/local/rbenv/plugins/ruby-build
       name: git clone ruby-build
+
+    - file: src=./common-roles/base/files/profile.d/rbenv dest=/etc/profile.d/rbenv owner=root group=root
+      name: rbenv login setting
+
+    - command: bash /etc/profile.d/rbenv
+      name: run rbenv init
