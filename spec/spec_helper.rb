@@ -42,5 +42,6 @@ RSpec.configure do |c|
       end
       c.ssh   = Net::SSH.start(host, user, options)
     end
+    c.path = '/bin:/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin'
   end
 end
