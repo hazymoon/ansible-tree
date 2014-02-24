@@ -12,16 +12,25 @@ describe file(rbenv_path) do
 end
 
 # ruby-build
-ruby_build_path = "#{rbenv_path}/plugins/ruby-build"
+plugin_path = "#{rbenv_path}/plugins"
 
-describe file(ruby_build_path) do
+describe file("#{plugin_path}/ruby-build") do
   it {should be_directory}
 end
 
-describe file("#{ruby_build_path}/bin/ruby-build") do
+describe file("#{plugin_path}/ruby-build/bin/ruby-build") do
   it {should be_executable}
 end
 
+# rbenv-default-gems
+describe file("#{plugin_path}/rbenv-default-gems") do
+  it {should be_directory}
+end
+
+describe file("#{rbenv_path}/default-gems") do
+  it {should be_file}
+  its(:content) {should match(/bundler/)}
+end
 
 # rbenvのログイン時設定用ファイルの確認
 describe file('/etc/profile.d/rbenv.sh') do
@@ -82,3 +91,13 @@ end
 describe command('ruby --version') do
   it {should return_stdout(/ruby 2\.1\.0/)}
 end
+
+# bundlerがインストールされているか確認
+describe command('gem list') do
+  it {should return_stdout(/bundler/)}
+end
+# rbenv-rehashがインストールされているか確認
+describe command('gem list') do
+  it {should return_stdout(/rbenv\-rehash/)}
+end
+

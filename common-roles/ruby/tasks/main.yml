@@ -1,9 +1,18 @@
 ---
+  # rbenv
   - git: repo=git://github.com/sstephenson/rbenv.git dest=/usr/local/rbenv
     name: checkout rbenv
 
+  # ruby-build
   - git: repo=git://github.com/sstephenson/ruby-build.git dest=/usr/local/rbenv/plugins/ruby-build
     name: git clone ruby-build
+
+  # rbenv-default-gems
+  - git: repo=git://github.com/sstephenson/rbenv-default-gems.git dest=/usr/local/rbenv/plugins/rbenv-default-gems
+    name: git clone rbenv-default-gems
+
+  - copy: src=../files/default-gems dest=/usr/local/rbenv/
+    name: set default-gems
 
   - copy: src=../files/profile.d/rbenv.sh dest=/etc/profile.d/rbenv.sh owner=root group=root mode=0644
     name: set rbenv environment file
