@@ -9,6 +9,10 @@
 - vagrant provisionでvagrantコマンドからansibleを実行できます
 
 ## 参考情報
-- ansibleの入門については[こちら](http://yteraoka.github.io/ansible-tutorial/)を参考にする。
-- tips的なものについては[こちら](https://github.com/yteraoka/ansible-tutorial/wiki/Ansible-Note)を参考にする。
-- 接続先ホストの設定については[インベントリファイル](https://github.com/yteraoka/ansible-tutorial/wiki/Inventory-File)を参考にする
+### ansible
+  - ansibleの入門については[こちら](http://yteraoka.github.io/ansible-tutorial/)を参考にする。
+  - tips的なものについては[こちら](https://github.com/yteraoka/ansible-tutorial/wiki/Ansible-Note)を参考にする。
+  - 接続先ホストの設定については[インベントリファイル](https://github.com/yteraoka/ansible-tutorial/wiki/Inventory-File)を参考にする
+
+### serverspec
+  - serverspecで使えるResource Typesについては[こちら](http://serverspec.org/resource_types.html)を参考にする。
