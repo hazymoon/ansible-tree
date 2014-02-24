@@ -7,7 +7,10 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "centos6"
   config.vm.provider :virtualbox do |vb|
-    vb.customize ["modifyvm", :id, "--memory", "256", '--cpus', 1]
+    vb.customize ["modifyvm", :id, "--memory", "1024", '--cpus', 2]
+    # CentOSがIPv6の解決で遅くなる問題に対策
+    vb.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "off"]
   end
   config.vm.network :forwarded_port, guest: 80, host: 8000, id: 'http'
 
