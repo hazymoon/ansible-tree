@@ -8,4 +8,7 @@
     # - role: ./common-roles/nginx
     - role: ./common-roles/nginx-passenger
   tasks:
-
+    - yum: name=redis state=installed
+      name: be sure redis installed
+    - service: name=redis state=running enabled=yes
+      name: be sure redis runninng and enabled
