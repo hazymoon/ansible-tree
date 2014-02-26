@@ -15,6 +15,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.cache.auto_detect = true
 
   config.vm.network :forwarded_port, guest: 80, host: 8000, id: 'http'
+  config.vm.synced_folder ".", "/vagrant", type: "nfs"
 
   config.vm.provision 'ansible' do |ansible|
     ansible.inventory_path = './hosts'
