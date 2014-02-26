@@ -12,6 +12,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "off"]
   end
+  config.cache.auto_detect = true
+
   config.vm.network :forwarded_port, guest: 80, host: 8000, id: 'http'
 
   config.vm.provision 'ansible' do |ansible|
