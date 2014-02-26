@@ -1,0 +1,20 @@
+---
+  - gem: name=passenger state=present version={{passenger_version}} user_install=no
+    name: install passenger
+  - gem: name=rack state=present version={{rack_version}} user_install=no
+    name: rack for passenger
+  - yum: name=pcre-devel state=installed
+    name: pcre-devel for nginx
+  - command: /usr/local/rbenv/versions/2.1.0/lib/ruby/gems/2.1.0/gems/passenger-{{passenger_version}}/bin/passenger-install-nginx-module --auto --auto-download --prefix={{nginx_prefix}}
+    name: download and compile nginx with passenger
+  - copy: src=./common-roles/nginx-passenger/files/init.d/nginx dest=/etc/init.d/nginx mode=755
+    name: init script for nginx
+  - name: register nginx as service
+    shell: /sbin/chkconfig --add nginx
+  - name: enable nginx service
+    service: name=nginx enabled=yes
+  - name: start nginx service
+    service: name=nginx state=started
+  # yumで入れるとruby1.8がついてくる
+  # - yum: name=http://passenger.stealthymonkeys.com/rhel/6/passenger-release.noarch.rpm state=installed
+  # - yum: name=nginx-passenger

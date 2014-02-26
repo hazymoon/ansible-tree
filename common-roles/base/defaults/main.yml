@@ -1,0 +1,5 @@
+---
+  rack_version: 1.5.2
+  passenger_version: 4.0.37
+  nginx_prefix: /opt/nginx
+
