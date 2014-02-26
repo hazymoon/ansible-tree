@@ -14,6 +14,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
   config.cache.auto_detect = true
 
+  config.vm.network :private_network, ip: "192.168.33.30"
   config.vm.network :forwarded_port, guest: 80, host: 8000, id: 'http'
   config.vm.synced_folder ".", "/vagrant", type: "nfs"
 
