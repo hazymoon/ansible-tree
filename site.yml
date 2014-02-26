@@ -7,5 +7,5 @@
     - role: ./common-roles/ruby
     # - role: ./common-roles/nginx
     - role: ./common-roles/nginx-passenger
+    - role: ./common-roles/redis
   tasks:
-
