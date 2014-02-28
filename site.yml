@@ -10,3 +10,15 @@
     - role: ./common-roles/redis
     - role: ./common-roles/mysql_devel
   tasks:
+    - yum: name=mlocate state=installed
+      name: install locate command
+    - yum: name=telnet state=installed
+      name: install telnet command
+    - yum: name=bind-utils state=installed
+      name: install nslookup command
+    - yum: name=vim-enhanced state=installed
+      name: install vim
+    - yum: name=zsh state=installed
+      name: install zsh
+    - yum: name=tmux state=installed
+      name:  install tmux
